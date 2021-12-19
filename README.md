@@ -23,7 +23,7 @@ Code rules:
       
     return x    
 ```    
-6. intre sectiuni care un un anumit scop sa lasam un rand liber
+6. intre sectiunile care au un anumit scop sa lasam un rand liber
   --vezi la pct 5--
 
 7. adaugati o mica descriere a codului pe prima linie
