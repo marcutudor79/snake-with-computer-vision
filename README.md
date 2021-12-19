@@ -32,7 +32,9 @@ Code rules:
   
 8. TAB de 4 spatii (Please!)
 
-![image](https://user-images.githubusercontent.com/62753923/146671364-0e4edd7f-af0f-4c4d-8f81-5f3f6e09c2ae.png)
+![image](https://user-images.githubusercontent.com/62753923/146671429-08d0eead-7b98-4572-99ef-646f1add4993.png)
+
+r/uselessredcircle ikr
 
 
 
