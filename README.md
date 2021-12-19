@@ -38,16 +38,8 @@ r/uselessredcircle ikr
 
 9. Puneti si comentarii ca sa ne fie mai usor tuturor
 
-#Aceasta functie se ocupa de monitorizarea papilelor gustative
-def functie(papila):
-  
-  #Verificam daca mai exista papile gustative
-  if papila > 1:
-    return "Very good"
-  
-  elif papila = 0:
-    return "Damn boy u got covid"
-  
+![image](https://user-images.githubusercontent.com/62753923/146671619-ab1cf292-daa4-4a45-84d3-3ac4189f20dd.png)
+
   
 
 
