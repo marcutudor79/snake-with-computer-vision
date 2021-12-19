@@ -14,7 +14,7 @@ Code rules:
   
 5. return la un rand dupa restul functiei
 
-  def functie()
+  def functie():
     variabila = 2
     x = 0
     
@@ -35,6 +35,21 @@ Code rules:
 ![image](https://user-images.githubusercontent.com/62753923/146671429-08d0eead-7b98-4572-99ef-646f1add4993.png)
 
 r/uselessredcircle ikr
+
+9. Puneti si comentarii ca sa ne fie mai usor tuturor
+
+#Aceasta functie se ocupa de monitorizarea papilelor gustative
+def functie(papila):
+  
+  #Verificam daca mai exista papile gustative
+  if papila > 1:
+    return "Very good"
+  
+  elif papila = 0:
+    return "Damn boy u got covid"
+  
+  
+
 
 
 
