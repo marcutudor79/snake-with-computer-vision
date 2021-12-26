@@ -3,10 +3,21 @@ from pygame.locals import *
 import time
 import random
 
+# you win condition
+# cap de sarpe care sa nu fie un simplu block
+
+# as pune alt background pt win si lose
+# de rezolvam score-ul clipocitor
+
+
 SIZE = 40
 BACKGROUND_COLOR = (110, 110, 5)
+WAIT_TIME = 0.5  # 0.5 min - 0.1 max
+
 
 class Apple:
+    
+    #constructing the first apple
     def __init__(self, parent_screen):
         self.parent_screen = parent_screen
         self.image = pygame.image.load("resources/apple.jpg").convert()
@@ -27,6 +38,7 @@ class Snake:
         self.image = pygame.image.load("resources/block.jpg").convert()
         self.direction = 'down'
 
+        self.time = 0
         self.length = 1
         self.x = [40]
         self.y = [40]
@@ -86,9 +98,9 @@ class Game:
         self.apple = Apple(self.surface)
         self.apple.draw()
 
-    def play_background_music(self):
-        pygame.mixer.music.load('resources/bg_music_1.mp3')
-        pygame.mixer.music.play(-1, 0)
+    # def play_background_music(self):
+       # pygame.mixer.music.load('resources/bg_music_1.mp3')
+       # pygame.mixer.music.play(-1, 0)
 
     def play_sound(self, sound_name):
         if sound_name == "crash":
@@ -96,7 +108,7 @@ class Game:
         elif sound_name == 'ding':
             sound = pygame.mixer.Sound("resources/ding.mp3")
 
-        pygame.mixer.Sound.play(sound)
+        # pygame.mixer.Sound.play(sound)
         # pygame.mixer.music.stop()
 
 
@@ -125,19 +137,19 @@ class Game:
         # snake eating apple scenario
         for i in range(self.snake.length):
             if self.is_collision(self.snake.x[i], self.snake.y[i], self.apple.x, self.apple.y):
-                #self.play_sound("ding")
+                # self.play_sound("ding")
                 self.snake.increase_length()
                 self.apple.move()
 
         # snake colliding with itself
         for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
-                #self.play_sound('crash')
+                # self.play_sound('crash')
                 raise "Collision Occurred"
 
         # snake colliding with the boundries of the window
         if not (0 <= self.snake.x[0] <= 1000 and 0 <= self.snake.y[0] <= 800):
-            #self.play_sound('crash')
+            # self.play_sound('crash')
             raise "Hit the boundry error"
 
     def display_score(self):
@@ -152,10 +164,13 @@ class Game:
         self.surface.blit(line1, (200, 300))
         line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
-        #pygame.mixer.music.pause()
+        
+        # pygame.mixer.music.pause()
         pygame.display.flip()
 
     def run(self):
+        
+        
         running = True
         pause = False
 
@@ -166,7 +181,7 @@ class Game:
                         running = False
 
                     if event.key == K_RETURN:
-                        pygame.mixer.music.unpause()
+                        # pygame.mixer.music.unpause()
                         pause = False
 
                     if not pause:
@@ -193,8 +208,8 @@ class Game:
                 self.show_game_over()
                 pause = True
                 self.reset()
-
-            time.sleep(.1)
+            
+            pygame.time.Clock().tick(30)
 
 if __name__ == '__main__':
     game = Game()
