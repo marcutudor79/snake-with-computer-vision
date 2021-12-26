@@ -1,10 +1,11 @@
-Adougare modul: -hand_tracking
+Adaugare modul: -hand_tracking
 		-mainEx.py - exemplu de folosire
 
 Dependete(pentru functionare are nevoie de urmatoarele librarii):
 	-opencv-python
 	-cvzone
 	-mediapipe
+	-time(Update 1)
 
 Functionalitati:
 
@@ -33,3 +34,17 @@ Au fost folosite cele mai noi versiuni ale tuturor librariilor
 Warning comun pentru Windows:
 [ WARN:0] global D:\a\opencv-python\opencv-python\opencv\modules\videoio\src\cap_msmf.cpp (438)
 `anonymous-namespace'::SourceReaderCB::~SourceReaderCB terminating async callback
+
+Update 1:
+-Redenumire mai sugestiva a unor variabile
+-Adaugare functie fps_counter() care returneaza framerate-ul de procesare al videoclipului
+-Setare rezolutie video la 640x480 pentru perfomanta 
+
++Am adugat snake_w_handtracking-base.py pentru testare clasa CvHand cu un joc
+	-frame-ul setat dinamic (+20 fps - optim)
+	-pentru performanta optima modulul necesita o camera de cel putin 60 fps si o rezolutie de cel putin 640x480
+	-daca va conectati cu telefonul ca webcam setati variabila flip a instantei din CvHand cu True
+	 ex my_hand.flip = True
+
+-Update README
+

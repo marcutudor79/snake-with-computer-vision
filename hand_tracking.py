@@ -1,9 +1,10 @@
 from cvzone.HandTrackingModule import HandDetector
 import cv2
+import time
 
-# Video resolution
-wCam = 1280
-hCam = 720
+# Video resolution - Changed to optimal resolution
+wCam = 640
+hCam = 480
 
 # Declaration of capture device
 cap = cv2.VideoCapture(0)
@@ -17,9 +18,9 @@ detector = HandDetector(detectionCon=0.7, maxHands=1)
 
 
 class CvHand:
-    # Hand position from the previous frame
+    # Hand side from the previous frame
     # On declaration is initialized with 'w'
-    oldHandPoint = 'w'
+    oldHandSide = 'w'
 
     # Mirror video
     flip = False
@@ -28,18 +29,24 @@ class CvHand:
     cx = 0.0
     cy = 0.0
 
+    # Fps counter
+    pTime = 0
+    cTime = 0
+    fps = 0
+
     # Function to transform coordinates to one of the 4 sides:
     # Up - w
     # Down - s
     # Left - a
     # Right - d
-    def process_position(self, centerPoint):
-        # Flip frame
+    def process_position(self, point):
+        # Mirror frame if self.flip is True
         if self.flip is False:
-            self.cx = (wCam - centerPoint[0]) / wCam
+            self.cx = (wCam - point[0]) / wCam
         else:
-            self.cx = centerPoint[0] / wCam
-        self.cy = centerPoint[1] / hCam
+            self.cx = point[0] / wCam
+        self.cy = point[1] / hCam
+
         # Over main diagonal
         if self.cx >= self.cy:
             # Over minor diagonal -> Up
@@ -66,12 +73,26 @@ class CvHand:
         # If hand is detected
         if hands:
             # First hand detected
-            hand1 = hands[0]
-            centerPoint1 = hand1['center']  # center of the hand cx,cy
-            self.oldHandPoint = self.process_position(centerPoint1)
-            return self.oldHandPoint
+            hand_center_point = hands[0]['center']  # center of the hand cx,cy
+            self.oldHandSide = self.process_position(hand_center_point)
+
+            # Fps counter update
+            self.cTime = time.time()
+            self.fps = 1 / (self.cTime - self.pTime)
+            self.pTime = self.cTime
+
+            return self.oldHandSide
         else:
-            return self.oldHandPoint
+            # Fps counter update
+            self.cTime = time.time()
+            self.fps = 1 / (self.cTime - self.pTime)
+            self.pTime = self.cTime
+
+            return self.oldHandSide
+
+    # Returns fps
+    def fps_counter(self):
+        return self.fps
 
 
 # End program with this method
