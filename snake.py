@@ -132,6 +132,14 @@ class Game:
         bg = pygame.image.load("resources/background.jpg")
         self.surface.blit(bg, (0,0))
 
+    def render_bgwin(self):
+        bg = pygame.image.load("resources/happypuppy.jpg")
+        self.surface.blit(bg, (0,0))
+
+    def render_bglose(self):
+        bg = pygame.image.load("resources/sadpuppy.jpg")
+        self.surface.blit(bg, (0,0))
+
     def play(self):
         self.render_background()
         self.snake.walk()
@@ -165,19 +173,19 @@ class Game:
         self.surface.blit(score,(850,10))
 
     def show_game_over(self):
-        self.render_background()
+        self.render_bglose()
         font = pygame.font.SysFont('arial', 30)
-        line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (255, 255, 255))
+        line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (0, 0, 0))
         self.surface.blit(line1, (200, 300))
-        line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+        line2 = font.render("To play again press Enter. To exit press Escape!", True, (0, 0, 0))
         self.surface.blit(line2, (200, 350))
         # pygame.mixer.music.pause()
         pygame.display.flip()
         
     def show_game_win(self):
-        self.render_background()
+        self.render_bgwin()
         font = pygame.font.SysFont('arial', 30)    
-        line1 = font.render(f"Congratulations! You won: the snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
+        line1 = font.render(f"Congratulations! You won, the snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
         line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
@@ -216,7 +224,7 @@ class Game:
                     running = False
 
             #snake reaches maximul lenght
-            if self.snake.length == 10:
+            if self.snake.length == 3:
                 self.show_game_win()
                 pause = True
                 self.reset()
