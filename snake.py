@@ -4,17 +4,15 @@ from pygame.locals import *
 import time
 import random
 
-# cap de sarpe care sa nu fie un simplu block
-# as pune alt background pt win si lose
-
 # the size of the snake block
 SIZE = 40
 
-# this can be changed
-BACKGROUND_COLOR = (110, 110, 5)
+# do we need this?
+# BACKGROUND_COLOR = (110, 110, 5)
 
-# might be good but idk
-# WAIT_TIME = 0.5  # 0.5 min - 0.1 max
+# constant that helps with the movement of snek
+# 0.5 min - 0.1 max
+WAIT_TIME = 0.5  
 
 
 class Apple:
@@ -89,12 +87,15 @@ class Snake:
 
         self.draw()
 
+    # takes each block of the snek and updates it on the screen
+    # according to the new position
     def draw(self):
         for i in range(self.length):
             self.parent_screen.blit(self.image, (self.x[i], self.y[i]))
 
         pygame.display.flip()
 
+    # x, y will become lists of coordinates for snek's blocks
     def increase_length(self):
         self.length += 1
         self.x.append(-1)
@@ -103,7 +104,7 @@ class Snake:
 class Game:
     def __init__(self):
         pygame.init()
-        pygame.display.set_caption("Sneik")
+        pygame.display.set_caption("Snek in the Metaverse")
 
         # this is the window of the game
         self.surface = pygame.display.set_mode((1000, 800))
@@ -116,11 +117,17 @@ class Game:
         self.apple = Apple(self.surface)
         self.apple.draw()
 
+        # the way snek moves slower then the fps
+        self.wait_time = WAIT_TIME
+
+    # used when we restart the game
     def reset(self):
         self.snake = Snake(self.surface)
         self.apple = Apple(self.surface)
+        self.wait_time = WAIT_TIME
 
 
+    # if the snek hits the apple returns true otherwise returs false
     def is_collision(self, x1, y1, x2, y2):
         if x1 >= x2 and x1 < x2 + SIZE:
             if y1 >= y2 and y1 < y2 + SIZE:
@@ -136,33 +143,36 @@ class Game:
         self.snake.walk()
         self.apple.draw()
         self.display_score()
+        
         pygame.display.flip()
 
-        # snake eating apple scenario
+        # snek eating apple scenario (takes into consideration the
+        # posibillity for the apple to not be eaten by the head)
         for i in range(self.snake.length):
             if self.is_collision(self.snake.x[i], self.snake.y[i], self.apple.x, self.apple.y):
                 self.snake.increase_length()
                 self.apple.move()
+                self.wait_time -= 0.0057
 
-        # snake colliding with itself
+        # snek colliding with itself
         for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                 raise "Collision Occurred"
 
-        # snake colliding with the boundries of the window
+        # snek colliding with the boundries of the window
         if not (0 <= self.snake.x[0] <= 1000 and 0 <= self.snake.y[0] <= 800):
             raise "Hit the boundry error"
 
     def display_score(self):
-        font = pygame.font.SysFont('arial',30)
-        score = font.render(f"Score: {self.snake.length}",True,(200,200,200))
-        self.surface.blit(score,(850,10))
+        font = pygame.font.SysFont('arial', 30, True)
+        score = font.render(f"Score: {self.snake.length}", True, (200,200,200))
+        self.surface.blit(score, (850,10))
         
         pygame.display.flip()
 
     def show_game_over(self):
         self.render_background()
-        font = pygame.font.SysFont('arial', 30)
+        font = pygame.font.SysFont('arial', 30, True)
         
         line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
@@ -174,7 +184,7 @@ class Game:
     
     def show_game_win(self):
         self.render_background()
-        font = pygame.font.SysFont('arial', 30)    
+        font = pygame.font.SysFont('arial', 30, True)    
         
         line1 = font.render(f"Congratulations! You won: the snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
@@ -196,7 +206,12 @@ class Game:
 
         while running:
             for event in pygame.event.get():
+                
+                # the spidey sense of the game wether we pressed a key
+                # or not
                 if event.type == KEYDOWN:
+                    
+                    # logic for pausing or exiting the game
                     if event.key == K_ESCAPE:
                         running = False
 
@@ -221,7 +236,7 @@ class Game:
                     running = False
             
             # snake reaches maximum lenght
-            if self.snake.length == 20:
+            if self.snake.length == 70:
                 self.show_game_win()
                 pause = True
                 self.reset()
@@ -229,15 +244,20 @@ class Game:
             try:
 
                 if not pause:
+                    
+                    # continues the game (updating the blocks)
                     self.play()
+                    
+                    # snek will be slower then the game tick
+                    time.sleep(self.wait_time)
 
             except Exception as e:
                 self.show_game_over()
                 pause = True
                 self.reset()
             
-            #the game runs at 10 fps
-            pygame.time.Clock().tick(10)
+            # the game runs at 30 fps
+            pygame.time.Clock().tick(30)
 
 if __name__ == '__main__':
     game = Game()
