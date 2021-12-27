@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 import time
 import random
+import hand_tracking as ht
 
 # the size of the snake block
 SIZE = 40
@@ -119,6 +120,16 @@ class Game:
 
         # the way snek moves slower then the fps
         self.wait_time = WAIT_TIME
+        self.delay = True
+        
+        # for hand traking
+        self.my_hand = ht.CvHand()
+        self.my_hand.flip = False
+
+        
+
+        
+
 
     # used when we restart the game
     def reset(self):
@@ -136,14 +147,6 @@ class Game:
 
     def render_background(self):
         bg = pygame.image.load("resources/background.jpg")
-        self.surface.blit(bg, (0,0))
-
-    def render_bgwin(self):
-        bg = pygame.image.load("resources/happypuppy.jpg")
-        self.surface.blit(bg, (0,0))
-
-    def render_bglose(self):
-        bg = pygame.image.load("resources/sadpuppy.jpg")
         self.surface.blit(bg, (0,0))
 
     def play(self):
@@ -179,38 +182,33 @@ class Game:
         pygame.display.flip()
 
     def show_game_over(self):
-        self.render_bglose()
+        self.render_background()
         font = pygame.font.SysFont('arial', 30, True)
         
-        line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (0, 0, 0))
+        line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
         
-        line2 = font.render("To play again press Enter. To exit press Escape!", True, (0, 0, 0))
+        line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
 
         pygame.display.flip()
     
     def show_game_win(self):
-        self.render_bgwin()
+        self.render_background()
         font = pygame.font.SysFont('arial', 30, True)    
         
-        line1 = font.render("Congratulations! You won!", True, (255, 255, 255))
+        line1 = font.render(f"Congratulations! You won: the snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
-
-        line2 = font.render(f"The snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
-        self.surface.blit(line2, (200, 350))
         
-        line3 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
-        self.surface.blit(line3, (200, 400))
+        line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+        self.surface.blit(line2, (200, 350))
         
         pygame.display.flip()
 
-<<<<<<< Updated upstream
-=======
     def can_play(self):
         
         if self.delay == False:
-            time.sleep(0.2)
+            time.sleep(0.1)
             self.delay = True
         
         if self.delay == True:
@@ -218,7 +216,6 @@ class Game:
         if self.delay == False:
             return False
         
->>>>>>> Stashed changes
     # the function that runs the game
     def run(self):
 
@@ -230,6 +227,12 @@ class Game:
         pause = False
 
         while running:
+
+            hand_side = self.my_hand.current_hand_side()
+            print(hand_side)
+            
+            self.my_hand.show_image()
+
             for event in pygame.event.get():
                 
                 # the spidey sense of the game wether we pressed a key
@@ -256,12 +259,26 @@ class Game:
 
                         if event.key == K_DOWN: # change this with sorin's module
                             self.snake.move_down()
-
                 elif event.type == QUIT:
                     running = False
-            
-            # snake reaches maximum length
-            if self.snake.length == 5:
+                    ht.release_capture()
+
+            if not pause:                    
+                if hand_side == 'a': 
+                    self.snake.move_left()
+
+                if hand_side == 'd': 
+                    self.snake.move_right()
+
+                if hand_side == 'w': 
+                    self.snake.move_up()
+
+                if hand_side == 's': 
+                    self.snake.move_down()
+
+
+            # snake reaches maximum lenght
+            if self.snake.length == 70:
                 self.show_game_win()
                 pause = True
                 self.reset()
@@ -271,18 +288,19 @@ class Game:
                 if not pause:
                     
                     # continues the game (updating the blocks)
-                    self.play()
+                    print (self.can_play())
+                    if self.can_play() == True:
+                        self.play()
+                        self.delay = False                    
                     
-                    # snek will be slower then the game tick
-                    time.sleep(self.wait_time)
 
             except Exception as e:
                 self.show_game_over()
                 pause = True
                 self.reset()
             
-            # the game runs at 30 fps
-            pygame.time.Clock().tick(30)
+            # the game runs at 60 fps
+            pygame.time.Clock().tick(60)
 
 if __name__ == '__main__':
     game = Game()
