@@ -149,6 +149,14 @@ class Game:
         bg = pygame.image.load("resources/background.jpg")
         self.surface.blit(bg, (0,0))
 
+    def render_bgwin(self):
+        bg = pygame.image.load("resources/happypuppy.jpg")
+        self.surface.blit(bg, (0,0))
+
+    def render_bglose(self):
+        bg = pygame.image.load("resources/sadpuppy.jpg")
+        self.surface.blit(bg, (0,0))
+
     def play(self):
         self.render_background()
         self.snake.walk()
@@ -182,7 +190,7 @@ class Game:
         pygame.display.flip()
 
     def show_game_over(self):
-        self.render_background()
+        self.render_bglose()
         font = pygame.font.SysFont('arial', 30, True)
         
         line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (255, 255, 255))
@@ -194,7 +202,7 @@ class Game:
         pygame.display.flip()
     
     def show_game_win(self):
-        self.render_background()
+        self.render_bgwin()
         font = pygame.font.SysFont('arial', 30, True)    
         
         line1 = font.render(f"Congratulations! You won: the snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
