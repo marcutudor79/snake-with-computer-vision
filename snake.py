@@ -138,6 +138,14 @@ class Game:
         bg = pygame.image.load("resources/background.jpg")
         self.surface.blit(bg, (0,0))
 
+    def render_bgwin(self):
+        bg = pygame.image.load("resources/happypuppy.jpg")
+        self.surface.blit(bg, (0,0))
+
+    def render_bglose(self):
+        bg = pygame.image.load("resources/sadpuppy.jpg")
+        self.surface.blit(bg, (0,0))
+
     def play(self):
         self.render_background()
         self.snake.walk()
@@ -171,26 +179,29 @@ class Game:
         pygame.display.flip()
 
     def show_game_over(self):
-        self.render_background()
+        self.render_bglose()
         font = pygame.font.SysFont('arial', 30, True)
         
-        line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (255, 255, 255))
+        line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (0, 0, 0))
         self.surface.blit(line1, (200, 300))
         
-        line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+        line2 = font.render("To play again press Enter. To exit press Escape!", True, (0, 0, 0))
         self.surface.blit(line2, (200, 350))
 
         pygame.display.flip()
     
     def show_game_win(self):
-        self.render_background()
+        self.render_bgwin()
         font = pygame.font.SysFont('arial', 30, True)    
         
-        line1 = font.render(f"Congratulations! You won: the snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
+        line1 = font.render("Congratulations! You won!", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
-        
-        line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+
+        line2 = font.render(f"The snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
+        
+        line3 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+        self.surface.blit(line3, (200, 400))
         
         pygame.display.flip()
 
@@ -235,8 +246,8 @@ class Game:
                 elif event.type == QUIT:
                     running = False
             
-            # snake reaches maximum lenght
-            if self.snake.length == 70:
+            # snake reaches maximum length
+            if self.snake.length == 5:
                 self.show_game_win()
                 pause = True
                 self.reset()
