@@ -65,9 +65,3 @@ Update 1:
 	 ex my_hand.flip = True
   
 
-
-
-
-
-
-
