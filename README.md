@@ -2,45 +2,69 @@
 
 Pygame that includes handtraking
 
-Code rules:
+Perequisites:
 
-1. space dupa virgula 
-```
-  functie_python(variabila, variabila2)
-```
-3. space inainte si dupa egal
-```
-  variabila = variabila2
-```  
-5. return la un rand dupa restul functiei
-```
-  def functie():
-    variabila = 2
-    x = 0
-    
-    for _ in range(variabila):
-      x += 1
-      
-    return x    
-```    
-6. intre sectiunile care au un anumit scop sa lasam un rand liber
-  --vezi la pct 5--
+python 3.9 or newer
 
-7. adaugati o mica descriere a codului pe prima linie
-```  
-  #Modul care se ocupa de Handtraking
-```  
-8. TAB de 4 spatii (Please!)
+installed with pip:
+1. opencv-python
+2. cvzone
+3. mediapipe
+4. pygame
 
-![image](https://user-images.githubusercontent.com/62753923/146671429-08d0eead-7b98-4572-99ef-646f1add4993.png)
+The game was made with pygame
+//shall add readme
 
-r/uselessredcircle ikr
+The handtraking module:
+Adaugare modul: -hand_tracking
+		-mainEx.py - exemplu de folosire
 
-9. Puneti si comentarii ca sa ne fie mai usor tuturor
+Dependete(pentru functionare are nevoie de urmatoarele librarii):
+	-opencv-python
+	-cvzone
+	-mediapipe
+	-time(Update 1)
 
-![image](https://user-images.githubusercontent.com/62753923/146671619-ab1cf292-daa4-4a45-84d3-3ac4189f20dd.png)
+Functionalitati:
 
+Contine clasa CvHand cu:
+-metoda current_hand_side() care returneaza:
+	-o litera din: {w, s, a, d}
+	-frame-ul se imparte in 4 triunghiuri  \/ , fiecare triunghi corespunzand unei parti: 
+					       /\
+		Up -> w
+		Down -> s
+		Left -> a
+		Right -> d
+	
+	-daca nu se gaseste o mana in frame, se returneaza partea anterioara in care era mana 
+
+-variablia flip se poate seta pe True pentru a face mirror frame-urilor(stanga devine dreapta si vice versa),
+ folositor pentru unele camere.
+ Recomand implementarea unei optiuni pentru a putea face flip frame-urilor
+
+-functia release_capture() care trebuie apelata la sfarsitul programului, sau dupa ce nu mai avem nevoie de
+ functionalitatea clasei CvHand
+
+note:
+Modulul a fost scris si testat in PyCharm Community Edition 2021.3 cu Python 3.10.1
+Au fost folosite cele mai noi versiuni ale tuturor librariilor
+Warning comun pentru Windows:
+[ WARN:0] global D:\a\opencv-python\opencv-python\opencv\modules\videoio\src\cap_msmf.cpp (438)
+`anonymous-namespace'::SourceReaderCB::~SourceReaderCB terminating async callback
+
+Update 1:
+-Redenumire mai sugestiva a unor variabile
+-Adaugare functie fps_counter() care returneaza framerate-ul de procesare al videoclipului
+-Setare rezolutie video la 640x480 pentru perfomanta 
+
++Am adugat snake_w_handtracking-base.py pentru testare clasa CvHand cu un joc
+	-frame-ul setat dinamic (+20 fps - optim)
+	-pentru performanta optima modulul necesita o camera de cel putin 60 fps si o rezolutie de cel putin 640x480
+	-daca va conectati cu telefonul ca webcam setati variabila flip a instantei din CvHand cu True
+	 ex my_hand.flip = True
   
+
 
 
 
