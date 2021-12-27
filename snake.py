@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 import time
 import random
+import hand_tracking as ht
 
 # the size of the snake block
 SIZE = 40
@@ -119,6 +120,16 @@ class Game:
 
         # the way snek moves slower then the fps
         self.wait_time = WAIT_TIME
+        self.delay = True
+        
+        # for hand traking
+        self.my_hand = ht.CvHand()
+        self.my_hand.flip = False
+
+        
+
+        
+
 
     # used when we restart the game
     def reset(self):
@@ -194,6 +205,17 @@ class Game:
         
         pygame.display.flip()
 
+    def can_play(self):
+        
+        if self.delay == False:
+            time.sleep(0.1)
+            self.delay = True
+        
+        if self.delay == True:
+            return True
+        if self.delay == False:
+            return False
+        
     # the function that runs the game
     def run(self):
 
@@ -205,6 +227,12 @@ class Game:
         pause = False
 
         while running:
+
+            hand_side = self.my_hand.current_hand_side()
+            print(hand_side)
+            
+            self.my_hand.show_image()
+
             for event in pygame.event.get():
                 
                 # the spidey sense of the game wether we pressed a key
@@ -231,10 +259,24 @@ class Game:
 
                         if event.key == K_DOWN: # change this with sorin's module
                             self.snake.move_down()
-
                 elif event.type == QUIT:
                     running = False
-            
+                    ht.release_capture()
+
+            if not pause:                    
+                if hand_side == 'a': 
+                    self.snake.move_left()
+
+                if hand_side == 'd': 
+                    self.snake.move_right()
+
+                if hand_side == 'w': 
+                    self.snake.move_up()
+
+                if hand_side == 's': 
+                    self.snake.move_down()
+
+
             # snake reaches maximum lenght
             if self.snake.length == 70:
                 self.show_game_win()
@@ -246,18 +288,19 @@ class Game:
                 if not pause:
                     
                     # continues the game (updating the blocks)
-                    self.play()
+                    print (self.can_play())
+                    if self.can_play() == True:
+                        self.play()
+                        self.delay = False                    
                     
-                    # snek will be slower then the game tick
-                    time.sleep(self.wait_time)
 
             except Exception as e:
                 self.show_game_over()
                 pause = True
                 self.reset()
             
-            # the game runs at 30 fps
-            pygame.time.Clock().tick(30)
+            # the game runs at 60 fps
+            pygame.time.Clock().tick(60)
 
 if __name__ == '__main__':
     game = Game()
