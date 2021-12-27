@@ -205,6 +205,20 @@ class Game:
         
         pygame.display.flip()
 
+<<<<<<< Updated upstream
+=======
+    def can_play(self):
+        
+        if self.delay == False:
+            time.sleep(0.2)
+            self.delay = True
+        
+        if self.delay == True:
+            return True
+        if self.delay == False:
+            return False
+        
+>>>>>>> Stashed changes
     # the function that runs the game
     def run(self):
 
