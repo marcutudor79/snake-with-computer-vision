@@ -4,7 +4,7 @@ Pygame that includes handtraking
 
 Perequisites:
 
-tested on: python 3.8 or newer
+tested on: python 3.8 or newer, but 
 should work on: python 3 or newer
 
 installed with pip:
