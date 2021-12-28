@@ -43,6 +43,9 @@ class Snake:
         
         # a block of the snek's body
         self.image = pygame.image.load("resources/block.jpg").convert()
+
+        # a block of the snek's head
+        self.head = pygame.image.load("resources/snakehead.png").convert()
         
         # at first the snek goes down
         self.direction = 'down'
@@ -91,7 +94,9 @@ class Snake:
     # takes each block of the snek and updates it on the screen
     # according to the new position
     def draw(self):
-        for i in range(self.length):
+        self.parent_screen.blit(self.head, (self.x[0], self.y[0]))
+
+        for i in range(1, self.length):
             self.parent_screen.blit(self.image, (self.x[i], self.y[i]))
 
         pygame.display.flip()
@@ -211,11 +216,14 @@ class Game:
         self.render_bgwin()
         font = pygame.font.SysFont('arial', 30, True)    
         
-        line1 = font.render(f"Congratulations! You won: the snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
+        line1 = font.render(f"Congratulations! You won!", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
-        
-        line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+
+        line2 = font.render(f"The snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
+        
+        line3 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+        self.surface.blit(line3, (200, 400))
         
         pygame.display.flip()
 
@@ -296,12 +304,13 @@ class Game:
                 contor = 1
                 self.reset()
             
-            # get hand tracking module fps and set optimal game fps
+            
             fps = self.my_hand.fps_counter() + 20
             if fps > 60:
                 fps = 60
             
             pygame.time.Clock().tick(fps)
+            
             
 
 if __name__ == '__main__':
