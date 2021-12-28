@@ -4,11 +4,11 @@ import time
 import mediapipe as mp
 
 # Video resolution - Changed to optimal resolution
-wCam = 640
-hCam = 480
+wCam = 1280
+hCam = 720
 
 # Declaration of capture device
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW) #captureDevice = camera
 
 # Set resolution of the processed video
 cap.set(3, wCam)
@@ -98,6 +98,7 @@ class CvHand:
     # Shows image with the hand
     def show_image(self):
         success, img = cap.read()
+        
         cv2.imshow("handtraking", img)
 
 # End program with this method
