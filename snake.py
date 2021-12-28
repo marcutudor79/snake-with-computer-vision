@@ -211,11 +211,14 @@ class Game:
         self.render_bgwin()
         font = pygame.font.SysFont('arial', 30, True)    
         
-        line1 = font.render(f"Congratulations! You won: the snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
+        line1 = font.render("Congratulations! You won!", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
         
-        line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+        line2 = font.render(f"The snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
+
+        line3 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+        self.surface.blit(line3, (200, 400))
         
         pygame.display.flip()
 
@@ -292,7 +295,7 @@ class Game:
 
 
             # snake reaches maximum lenght
-            if self.snake.length == 70:
+            if self.snake.length == 10:
                 self.show_game_win()
                 pause = True
                 self.reset()
