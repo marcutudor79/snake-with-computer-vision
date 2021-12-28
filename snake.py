@@ -303,13 +303,9 @@ class Game:
                 fps = 60
             
             pygame.time.Clock().tick(fps)
-            # print(contor)
+            
             
 
 if __name__ == '__main__':
     game = Game()
-    
-
-
-    
     game.run()
