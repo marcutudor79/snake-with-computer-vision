@@ -51,8 +51,8 @@ class Snake:
         self.length = 1
         
         #where the snake starts first
-        self.x = [40]
-        self.y = [40]
+        self.x = [400]
+        self.y = [400]
 
     #defines the movement of the head
     def move_left(self):
@@ -109,6 +109,11 @@ class Game:
 
         # this is the window of the game
         self.surface = pygame.display.set_mode((1000, 800))
+        bg = pygame.image.load("resources/background.jpg")
+        self.surface.blit(bg, (0,0))
+        font = pygame.font.SysFont('arial', 30, True)
+        line1 = font.render("Press enter to start", True, (255, 255, 255))
+        self.surface.blit(line1, (400, 300))
         
         # snek is an attribute of the game (passing the surface)
         self.snake = Snake(self.surface)
@@ -128,16 +133,13 @@ class Game:
 
         
 
-        
-
-
+            
     # used when we restart the game
     def reset(self):
         self.snake = Snake(self.surface)
         self.apple = Apple(self.surface)
         self.wait_time = WAIT_TIME
-
-
+    
     # if the snek hits the apple returns true otherwise returs false
     def is_collision(self, x1, y1, x2, y2):
         if x1 >= x2 and x1 < x2 + SIZE:
@@ -162,6 +164,7 @@ class Game:
         self.snake.walk()
         self.apple.draw()
         self.display_score()
+        
         
         pygame.display.flip()
 
@@ -199,6 +202,9 @@ class Game:
         line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
 
+        line3 =  font.render("Press F1 to mirror your input", True, (255, 255, 255))
+        self.surface.blit(line3, (200, 400))
+
         pygame.display.flip()
     
     def show_game_win(self):
@@ -213,17 +219,7 @@ class Game:
         
         pygame.display.flip()
 
-    def can_play(self):
-        
-        if self.delay == False:
-            time.sleep(0.1)
-            self.delay = True
-        
-        if self.delay == True:
-            return True
-        if self.delay == False:
-            return False
-        
+            
     # the function that runs the game
     def run(self):
 
@@ -232,13 +228,12 @@ class Game:
         running = True
         
         # variable for pausing the game
-        pause = False
+        pause = True
+        contor = 0
 
         while running:
 
             hand_side = self.my_hand.current_hand_side()
-            print(hand_side)
-            
             self.my_hand.show_image()
 
             for event in pygame.event.get():
@@ -253,20 +248,14 @@ class Game:
 
                     if event.key == K_RETURN:
                         pause = False
-
-                    # this is where we choose how the snek moves
-                    if not pause:
-                        if event.key == K_LEFT: # change this with sorin's module
-                            self.snake.move_left()
-
-                        if event.key == K_RIGHT: # change this with sorin's module
-                            self.snake.move_right()
-
-                        if event.key == K_UP: # change this with sorin's module
-                            self.snake.move_up()
-
-                        if event.key == K_DOWN: # change this with sorin's module
-                            self.snake.move_down()
+                    
+                    if event.key == K_F1:
+                        if self.my_hand.flip == True:
+                            self.my_hand.flip = False
+                        else:
+                            self.my_hand.flip = True
+                              
+                
                 elif event.type == QUIT:
                     running = False
                     ht.release_capture()
@@ -286,29 +275,36 @@ class Game:
 
 
             # snake reaches maximum lenght
-            if self.snake.length == 70:
+            if self.snake.length == 10:
                 self.show_game_win()
                 pause = True
                 self.reset()
                         
             try:
-
+                
                 if not pause:
-                    
-                    # continues the game (updating the blocks)
-                    print (self.can_play())
-                    if self.can_play() == True:
+                    contor += 1
+                    if contor == 2:
                         self.play()
-                        self.delay = False                    
+                        contor = 0                  
                     
 
             except Exception as e:
+                
                 self.show_game_over()
                 pause = True
+                contor = 1
                 self.reset()
             
-            # the game runs at 60 fps
-            pygame.time.Clock().tick(60)
+            
+            
+            fps = self.my_hand.fps_counter() + 20
+            if fps > 60:
+                fps = 60
+            
+            pygame.time.Clock().tick(fps)
+            
+            
 
 if __name__ == '__main__':
     game = Game()
