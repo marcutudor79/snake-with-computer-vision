@@ -297,7 +297,6 @@ class Game:
                 self.reset()
             
             
-            
             fps = self.my_hand.fps_counter() + 20
             if fps > 60:
                 fps = 60

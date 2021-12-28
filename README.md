@@ -31,7 +31,7 @@ Functionalitati:
 Contine clasa CvHand cu:
 -metoda current_hand_side() care returneaza:
 	-o litera din: {w, s, a, d}
-	-frame-ul se imparte in 4 triunghiuri  \/ , fiecare triunghi corespunzand unei parti: 
+	-frame-ul se imparte in 4 triunghiuri \/ , fiecare triunghi corespunzand unei parti: 
 					       /\
 		Up -> w
 		Down -> s
@@ -59,7 +59,7 @@ Update 1:
 -Adaugare functie fps_counter() care returneaza framerate-ul de procesare al videoclipului
 -Setare rezolutie video la 640x480 pentru perfomanta 
 
-+Am adugat snake_w_handtracking-base.py pentru testare clasa CvHand cu un joc
++ Am adugat snake_w_handtracking-base.py pentru testare clasa CvHand cu un joc
 	-frame-ul setat dinamic (+20 fps - optim)
 	-pentru performanta optima modulul necesita o camera de cel putin 60 fps si o rezolutie de cel putin 640x480
 	-daca va conectati cu telefonul ca webcam setati variabila flip a instantei din CvHand cu True
