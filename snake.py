@@ -94,7 +94,6 @@ class Snake:
     # takes each block of the snek and updates it on the screen
     # according to the new position
     def draw(self):
-        
         self.parent_screen.blit(self.head, (self.x[0], self.y[0]))
 
         for i in range(1, self.length):
@@ -217,11 +216,14 @@ class Game:
         self.render_bgwin()
         font = pygame.font.SysFont('arial', 30, True)    
         
-        line1 = font.render(f"Congratulations! You won: the snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
+        line1 = font.render(f"Congratulations! You won!", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
-        
-        line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+
+        line2 = font.render(f"The snake reached its maximum length: {self.snake.length}", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
+        
+        line3 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+        self.surface.blit(line3, (200, 400))
         
         pygame.display.flip()
 
