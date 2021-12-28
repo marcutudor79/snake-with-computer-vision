@@ -4,7 +4,8 @@ Pygame that includes handtraking
 
 Perequisites:
 
-python 3.9 or newer
+tested on: python 3.8 or newer
+should work on: python 3 or newer
 
 installed with pip:
 1. opencv-python
