@@ -296,13 +296,12 @@ class Game:
                 contor = 1
                 self.reset()
             
-            
+            # get hand tracking module fps and set optimal game fps
             fps = self.my_hand.fps_counter() + 20
             if fps > 60:
                 fps = 60
             
             pygame.time.Clock().tick(fps)
-            
             
 
 if __name__ == '__main__':
