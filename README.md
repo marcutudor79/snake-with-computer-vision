@@ -4,14 +4,28 @@
 
 - Python 3.8 or higher
 
-installed with pip:
+For windows users: https://www.python.org/downloads/
+For **debian based linux distros** users:
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install python3.8
+```
+
+installed with **pip**:
 - opencv-python
 - cvzone
 - mediapipe
 - pygame
+```
+pip install opencv-python
+pip install cvzone
+pip install mediapipe
+pip install pygame
+```
 
-The game was made with pygame
-//shall add readme
+## How we made it
+
 
 The handtraking module:
 Adaugare modul: -hand_tracking
