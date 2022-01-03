@@ -83,7 +83,7 @@ RIGHT -> d
 `anonymous-namespace'::SourceReaderCB::~SourceReaderCB terminating async callback  
 
 ---
-Updates and realeases:  
+Updates and releases:  
 
 **Update 1:**  
 - Suggestive renaming of the variables 
