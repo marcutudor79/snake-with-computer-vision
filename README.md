@@ -30,7 +30,7 @@ pip install pygame
 ## How we made it
 
 
-The handtraking module:  
+## The handtraking module:  
 
 Dependencies:    
 - opencv-python  
@@ -42,24 +42,21 @@ Features:
 
 Uses CvHand in order to implement:  
 -method current_hand_side() which returns:
-	-a letter from: {w, s, a, d}
-	-your camera will be   \/ , fiecare triunghi corespunzand unei parti: 
-					      /\
-		Up -> w
-		Down -> s
-		Left -> a
-		Right -> d
+- a letter from: {w, s, a, d}  
+- detects your hand through your camera which will be split like this: \/ , each triangle corresponding to:   
+					                               /\
+The upper triangle -> w  
+The downwards triangle -> s  
+The triangle ont the left -> a  
+The triangle on the right -> d  
 	
-	-daca nu se gaseste o mana in frame, se returneaza partea anterioara in care era mana 
+- if no hand is detected, this method returns the previous returned value
 
--variablia flip se poate seta pe True pentru a face mirror frame-urilor(stanga devine dreapta si vice versa),
- folositor pentru unele camere.
- Recomand implementarea unei optiuni pentru a putea face flip frame-urilor
+- the flip variable can be set to True in order to mirror the frames captured via your camera (left becomes right and right becomes left)
 
--functia release_capture() care trebuie apelata la sfarsitul programului, sau dupa ce nu mai avem nevoie de
- functionalitatea clasei CvHand
+- method **release_capture()** which must be called when the program ends or when we no longer need CvHand
 
-note:
+> notes:
 Modulul a fost scris si testat in PyCharm Community Edition 2021.3 cu Python 3.10.1
 Au fost folosite cele mai noi versiuni ale tuturor librariilor
 Warning comun pentru Windows:
