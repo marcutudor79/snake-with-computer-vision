@@ -107,7 +107,22 @@ It is the oldschool snake game in which the player needs to increase the length 
 We wanted to bring this game back to life by changing the way you move the snake  
 In this game, the player needs to eat 10 apples in order to win, but the snake will move only using the handtracking module
 
-**You cannot use the keyboard to move the snake**
+**You cannot use the keyboard to move the snake**  
+
+**Update 1:**  
+- Added a lose window
+- Adjusted the snake's speed
+
+**Update 2:**
+- Added another block for the snake's head
+- Merged the game with handtracking_module
+
+**Update 3:**
+- Fixed the fps problem that makes the snake move faster
+- The of the game is based on the speed of the computer
+
+**Update 4:**
+- Made the snake's body the same color as the head
 
 
 
