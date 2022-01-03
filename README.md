@@ -43,8 +43,8 @@ Features:
 Uses CvHand in order to implement:  
 -method current_hand_side() which returns:
 - a letter from: {w, s, a, d}  
-- detects your hand through your camera which will be split like this: \/ , each triangle corresponding to:   
-					                               /\
+- detects your hand through your camera which will be split in four triangles, each triangle corresponding to:   
+					                               
 The upper triangle -> w  
 The downwards triangle -> s  
 The triangle ont the left -> a  
