@@ -24,7 +24,7 @@ sudo apt upgrade
 sudo apt install python3.8
 ```
 
-installed with **pip**:
+Install with **pip**:
 - opencv-python
 - cvzone
 - mediapipe
