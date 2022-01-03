@@ -6,7 +6,7 @@
 
 For windows users:
 [get python from here](https://www.python.org/downloads/)  
->add both python and pip to path  
+**!!add both python and pip to path**  
 
 For **debian based linux distros** users:
 ```
