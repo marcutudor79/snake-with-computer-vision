@@ -1,9 +1,9 @@
 # Snake_with_handtracking
 
----
-## Summary:  
+
+## Summary: 
+
 We want to bring back an old game, the snake game, by implementing new innovative ways to move the snake with augmented computer vision
----
 
 ## Perequisites:
 
