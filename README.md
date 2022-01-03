@@ -109,6 +109,8 @@ In this game, the player needs to eat 10 apples in order to win, but the snake w
 
 **You cannot use the keyboard to move the snake**  
 
+Updated and releases:  
+
 **Update 1:**  
 - Added a lose window
 - Adjusted the snake's speed
