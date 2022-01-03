@@ -25,6 +25,10 @@ pip install opencv-python
 pip install cvzone
 pip install mediapipe
 pip install pygame
+```  
+After installing all the perequisites you should be able to run the game  
+```
+python snake.py
 ```
 
 ## How we made it
