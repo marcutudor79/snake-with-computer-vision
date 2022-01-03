@@ -44,7 +44,7 @@ or
 python3 snake.py
 ```  
 
-## How we made it
+# The way we did it
 
 
 ## The handtraking module:  
