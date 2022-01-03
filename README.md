@@ -21,7 +21,6 @@ installed with **pip**:
 - mediapipe
 - pygame
 ```
-#terminal commands that work in windows powershell
 pip install opencv-python
 pip install cvzone
 pip install mediapipe
