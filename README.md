@@ -1,11 +1,10 @@
-# Pythongame_w_Handtraking
+# Snake_with_handtracking
 
-Pygame that includes handtraking
+## Perequisites:
+---
+Python 3.8 or higher
+---
 
-Perequisites:
-
-tested on: python 3.8 or newer, but 
-should work on: python 3 or newer
 
 installed with pip:
 1. opencv-python
