@@ -30,23 +30,21 @@ pip install pygame
 ## How we made it
 
 
-The handtraking module:
-Adaugare modul: -hand_tracking
-		-mainEx.py - exemplu de folosire
+The handtraking module:  
 
-Dependete(pentru functionare are nevoie de urmatoarele librarii):
-	-opencv-python
-	-cvzone
-	-mediapipe
-	-time(Update 1)
+Dependencies:  
+-opencv-python
+-cvzone
+-mediapipe
+-time (Update 1)
 
-Functionalitati:
+Features:
 
-Contine clasa CvHand cu:
--metoda current_hand_side() care returneaza:
-	-o litera din: {w, s, a, d}
-	-frame-ul se imparte in 4 triunghiuri \/ , fiecare triunghi corespunzand unei parti: 
-					       /\
+Uses CvHand in order to implement:  
+-method current_hand_side() which returns:
+	-a letter from: {w, s, a, d}
+	-your camera will be   \/ , fiecare triunghi corespunzand unei parti: 
+					      /\
 		Up -> w
 		Down -> s
 		Left -> a
