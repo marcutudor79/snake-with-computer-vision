@@ -3,7 +3,7 @@
 
 ## Summary: 
 
-We want to bring back an old game, the snake game, by implementing new innovative ways to move the snake with augmented computer vision.
+We want to **bring back an old game**, the snake game, **by implementing new innovative ways** to move the snake with **augmented computer vision.**
   
 ![image](https://user-images.githubusercontent.com/62753923/147962344-9e2ce3a8-53e2-48b3-b6fd-f00d7b9f7d90.png)  
 
