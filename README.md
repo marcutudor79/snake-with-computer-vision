@@ -62,14 +62,16 @@ RIGHT -> d
 
 **Common warning for Windows:**
 
->[ WARN:0] global D:\a\opencv-python\opencv-python\opencv\modules\videoio\src\cap_msmf.cpp (438)  
+>[ WARN:0] global C:\...\opencv-python\opencv-python\opencv\modules\videoio\src\cap_msmf.cpp (438)  
 `anonymous-namespace'::SourceReaderCB::~SourceReaderCB terminating async callback  
 
+---
+Updates and realeases:  
 
-Update 1:
--Redenumire mai sugestiva a unor variabile
--Adaugare functie fps_counter() care returneaza framerate-ul de procesare al videoclipului
--Setare rezolutie video la 640x480 pentru perfomanta 
+**Update 1:**  
+- Suggestive renaming of the variables 
+- Added a function fps_counter(), which returns the framerate of the processed camera feed
+- Camera feed resolution was set to 640x480 in order to increase performance   
 
 + Am adugat snake_w_handtracking-base.py pentru testare clasa CvHand cu un joc
 	-frame-ul setat dinamic (+20 fps - optim)
