@@ -58,12 +58,13 @@ RIGHT -> d
 
 - method **release_capture()** which must be called when the program ends or when we no longer need CvHand
 
-> notes:
-Modulul a fost scris si testat in PyCharm Community Edition 2021.3 cu Python 3.10.1
-Au fost folosite cele mai noi versiuni ale tuturor librariilor
-Warning comun pentru Windows:
-[ WARN:0] global D:\a\opencv-python\opencv-python\opencv\modules\videoio\src\cap_msmf.cpp (438)
-`anonymous-namespace'::SourceReaderCB::~SourceReaderCB terminating async callback
+> The module was written and tested using PyCharm Community Edition 2021.3 with Python 3.10.1  
+
+**Common warning for Windows:**
+
+>[ WARN:0] global D:\a\opencv-python\opencv-python\opencv\modules\videoio\src\cap_msmf.cpp (438)  
+`anonymous-namespace'::SourceReaderCB::~SourceReaderCB terminating async callback  
+
 
 Update 1:
 -Redenumire mai sugestiva a unor variabile
