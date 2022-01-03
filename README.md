@@ -32,11 +32,11 @@ pip install pygame
 
 The handtraking module:  
 
-Dependencies:  
--opencv-python
--cvzone
--mediapipe
--time (Update 1)
+Dependencies:    
+-opencv-python  
+-cvzone  
+-mediapipe  
+-time (Update 1)  
 
 Features:
 
