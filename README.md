@@ -44,11 +44,13 @@ Uses CvHand in order to implement:
 -method current_hand_side() which returns:
 - a letter from: {w, s, a, d}  
 - detects your hand through your camera which will be split in four triangles, each triangle corresponding to:   
-					                               
-The upper triangle -> w  
-The downwards triangle -> s  
-The triangle ont the left -> a  
-The triangle on the right -> d  
+
+![Untitled](https://user-images.githubusercontent.com/62753923/147959491-8d8ead72-5c2b-489e-9222-755f2515bdb9.png)
+
+UP -> w  
+DOWN -> s  
+LEFT -> a  
+RIGHT -> d  
 	
 - if no hand is detected, this method returns the previous returned value
 
