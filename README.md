@@ -4,7 +4,9 @@
 
 - Python 3.8 or higher
 
-For windows users: https://www.python.org/downloads/ 
+For windows users: https://www.python.org/downloads/
+**add both python and pip to path**
+
 For **debian based linux distros** users:
 ```
 sudo apt update
@@ -18,6 +20,7 @@ installed with **pip**:
 - mediapipe
 - pygame
 ```
+#terminal commands that work in windows powershell
 pip install opencv-python
 pip install cvzone
 pip install mediapipe
