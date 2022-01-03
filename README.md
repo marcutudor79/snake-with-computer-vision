@@ -26,10 +26,14 @@ pip install cvzone
 pip install mediapipe
 pip install pygame
 ```  
-After installing all the perequisites you should be able to run the game  
+After installing all the perequisites you should be able to run the game using:
 ```
 python snake.py
+```  
+or
 ```
+python3 snake.py
+```  
 
 ## How we made it
 
