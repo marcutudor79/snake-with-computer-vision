@@ -4,7 +4,7 @@
 
 - Python 3.8 or higher
 
-For windows users: https://www.python.org/downloads/
+For windows users: https://www.python.org/downloads/ <br>
 For **debian based linux distros** users:
 ```
 sudo apt update
