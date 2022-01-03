@@ -4,7 +4,8 @@
 
 - Python 3.8 or higher
 
-For windows users: https://www.python.org/downloads/
+For windows users: 
+[Link](https://www.python.org/downloads/)
 **add both python and pip to path**
 
 For **debian based linux distros** users:
