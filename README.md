@@ -81,15 +81,24 @@ Updates and realeases:
 - Added a function fps_counter(), which returns the framerate of the processed camera feed
 - Camera feed resolution was set to 640x480 in order to increase performance   
 
-+ Am adugat snake_w_handtracking-base.py pentru testare clasa CvHand cu un joc
-	-frame-ul setat dinamic (+20 fps - optim)
-	-pentru performanta optima modulul necesita o camera de cel putin 60 fps si o rezolutie de cel putin 640x480
-	-daca va conectati cu telefonul ca webcam setati variabila flip a instantei din CvHand cu True
-	 ex my_hand.flip = True
-  
+**Update 2:**
+- Camera feed resolution was set to 1280x720 in order to easen the control of the snake
+- Added a function which returns the camera feed
 
+## The game:
+Dependencies:
+- pygame  
 
+This game was written using python using the pygame module  
+It is the oldschool snake game in which the player needs to increase the length of the snake by eating apples up to a certain length  
 
+---
+## Our view:  
+
+We wanted to bring this game back to life by changing the way you move the snake  
+In this game, the player needs to eat 10 apples in order to win, but the snake will move only using the handtracking module
+
+**You cannot use the keyboard to move the snake**
 
 
 
