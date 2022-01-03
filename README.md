@@ -1,16 +1,14 @@
 # Snake_with_handtracking
 
 ## Perequisites:
----
-Python 3.8 or higher
----
 
+- Python 3.8 or higher
 
 installed with pip:
-1. opencv-python
-2. cvzone
-3. mediapipe
-4. pygame
+- opencv-python
+- cvzone
+- mediapipe
+- pygame
 
 The game was made with pygame
 //shall add readme
